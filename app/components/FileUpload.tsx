@@ -87,7 +87,7 @@ export default function FileUpload({
           if (file && validateFile(file)) {
             setError(null);
           } else {
-            event.target.value = ""; // Reset file input if invalid
+            event.target.value = ""; // reset the input
           }
         }}
       />

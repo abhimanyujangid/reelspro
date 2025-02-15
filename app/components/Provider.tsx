@@ -1,4 +1,5 @@
-"use clinet";
+"use client"
+import React from "react";
 import { ImageKitProvider } from "imagekitio-next";
 import { SessionProvider } from "next-auth/react";
 
