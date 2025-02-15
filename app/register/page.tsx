@@ -27,11 +27,13 @@ const Register = () => {
     setLoading(true);
 
     try {
-      await apiClient.register(formData.email, formData.password);
-      toast.success("Registration successful! Redirecting...");
+      await toast.promise(apiClient.register(formData.email, formData.password), {
+        loading: "Registering...",
+        success: "Registration successful!",
+      });
       router.push("/login");
     } catch (error: any) {
-      toast.error(error.message);
+      toast.error(error.message || "Something went wrong. Try again.");
     } finally {
       setLoading(false);
     }

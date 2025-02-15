@@ -54,10 +54,10 @@ class ApiClient {
         });
     }
 
-    async login(username: string, password: string) {
-        return this.fetch<{ token: string }>('auth/login', {
+    async login(email: string, password: string) {
+        return this.fetch<{ message: string }>('auth/login', {
             method: 'POST',
-            body: { username, password },
+            body: { email, password },
         });
     }
 
@@ -65,6 +65,13 @@ class ApiClient {
         return this.fetch<{ message: string }>('auth/register', {
             method: 'POST',
             body: { email, password },
+        });
+    }
+
+    async forgotPassword(email: string) {
+        return this.fetch<{ message: string }>('auth/forgot', {
+            method: 'POST',
+            body: { email },
         });
     }
 }
