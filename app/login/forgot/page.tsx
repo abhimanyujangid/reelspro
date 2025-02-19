@@ -24,14 +24,13 @@ const ForgotPassword = () => {
     setLoading(true);
 
     try {
-      toast.promise(apiClient.forgotPassword(email), {
+     await toast.promise(apiClient.forgotPassword(email), {
         loading: "Sending reset link...",
         success: "Reset link sent successfully",
       });
     } catch (error: any) {
-      toast.error(error.message || "Something went wrong. Try again.");
+      toast.error('Currently unable to send reset link' );
     } finally {
-      toast.success("Reset link sent successfully");
       setLoading(false);
     }
   };

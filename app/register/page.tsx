@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Lock, Github } from "lucide-react";
+import { Mail, Lock } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { apiClient } from "@/lib/api-client";
@@ -72,17 +72,7 @@ const Register = () => {
           </button>
         </form>
 
-        <div className="text-center text-gray-500">Or continue with</div>
-        <div className="flex justify-center gap-4">
-          {[
-            { provider: "Google", bg: "bg-red-500 hover:bg-red-600", icon: <Mail className="w-5 h-5" /> },
-            { provider: "GitHub", bg: "bg-gray-800 hover:bg-gray-900", icon: <Github className="w-5 h-5" /> },
-          ].map(({ provider, bg, icon }) => (
-            <button key={provider} className={`flex items-center gap-2 px-4 py-2 text-white rounded-lg ${bg}`}>
-              {icon} {provider}
-            </button>
-          ))}
-        </div>
+       
 
         <p className="text-center text-sm text-gray-600">
           Already have an account?{" "}

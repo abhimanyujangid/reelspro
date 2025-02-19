@@ -47,7 +47,6 @@ const Login = () => {
       <div className="w-full max-w-md p-8 space-y-6 bg-white shadow-lg rounded-xl">
         {/* Logo */}
         <h2 className="text-3xl font-bold text-center text-blue-600">ReelPro</h2>
-        <p className="text-center text-gray-600">Modern UI</p>
 
         {/* Login Form */}
         <form className="space-y-4" onSubmit={handleSubmit}>
@@ -98,15 +97,11 @@ const Login = () => {
           <button
             onClick={() => signIn("google")}
             className="flex items-center gap-2 px-4 py-2 text-white bg-red-500 rounded-lg hover:bg-red-600"
+            
           >
             <Mail className="w-5 h-5" /> Google
           </button>
-          <button
-            onClick={() => signIn("github")}
-            className="flex items-center gap-2 px-4 py-2 text-white bg-gray-800 rounded-lg hover:bg-gray-900"
-          >
-            <Github className="w-5 h-5" /> GitHub
-          </button>
+          
         </div>
 
         {/* Sign Up Link */}

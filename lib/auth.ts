@@ -1,5 +1,6 @@
 import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
 import { connectionToDatabase } from './db';
 import User from '@/models/User';
 import bcrypt from 'bcryptjs';
@@ -16,7 +17,7 @@ export const authOptions: NextAuthOptions = {
                 if (!credentials?.email || !credentials?.password) {
                     throw new Error("Missing email or password");
                 }
-
+                
                 try {
                     await connectionToDatabase();
                     const user = await User.findOne({ email: credentials.email });
@@ -37,12 +38,19 @@ export const authOptions: NextAuthOptions = {
                     throw new Error("Invalid credentials or server error.");
                 }
             }
+        }),
+        GoogleProvider({
+            clientId: process.env.GOOGLE_CLIENT_ID!,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
         })
     ],
     callbacks: {
-        async jwt({ token, user }) {
+        async jwt({ token, user, account }) {
             if (user) {
                 token.id = user.id;
+            }
+            if (account?.provider === "google") {
+                token.id = user?.id;
             }
             return token;
         },
