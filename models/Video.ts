@@ -21,7 +21,7 @@ export interface IVideo{
 }
 
 const videoSchema = new Schema<IVideo>(
-    {
+    {  
         title: { type: String, required: true },
         description: { type: String, required: true },
         videoUrl: { type: String, required: true },

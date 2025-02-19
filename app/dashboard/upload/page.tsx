@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import FileUpload from '../components/FileUpload';
+import FileUpload from '../../components/FileUpload';
 import { IKUploadResponse } from "imagekitio-next/dist/types/components/IKUpload/props";
 import { apiClient } from "@/lib/api-client";
 import toast from "react-hot-toast";
-
+import { useRouter } from "next/navigation";
 const UploadVideo = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -13,7 +13,7 @@ const UploadVideo = () => {
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const [uploadedFileUrl, setUploadedFileUrl] = useState<string | null>(null);
-
+  const router = useRouter();
   const handleSuccess = (response: IKUploadResponse) => {
     console.log("Upload successful:", response);
     setUploadedFileUrl(response.url);
@@ -51,13 +51,12 @@ const UploadVideo = () => {
      // Add your API call here
      await apiClient.createVideo({ ...videoData, controls: true });
      toast.success("Video published successfully");
-
      // Reset form state
       setError(null);
       setTitle("");
       setDescription("");
       setUploadedFileUrl(null);
-      
+      router.push("/");
     } catch (err) {
       setError("Failed to publish video. Please try again.");
     }

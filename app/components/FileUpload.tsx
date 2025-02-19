@@ -50,16 +50,19 @@ export default function FileUpload({
       setError("Please select a file");
       return false;
     }
+    
 
     if (fileType === "video") {
       if (!file.type.startsWith("video/")) {
         setError("Invalid file type, please upload a video file");
         return false;
       }
+
       if (file.size > 100 * 1024 * 1024) {
         setError("File size should not exceed 100MB");
         return false;
       }
+
     } else {
       const validTypes = ["image/jpeg", "image/png", "image/jpg"];
       if (!validTypes.includes(file.type)) {

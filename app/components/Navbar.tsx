@@ -46,12 +46,12 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
             <li>
-              <a className="justify-between">
+              <Link href="/" className="justify-between">
                 Home
                 <span className="badge">New</span>
-              </a>
+              </Link>
             </li>
-            <li><Link href="/upload">Upload</Link></li>
+            <li><Link href="/dashboard/upload">Upload</Link></li>
             <li onClick={handleSignOut}><a>Logout</a></li>
           </ul>
         </div>}

@@ -1,7 +1,8 @@
 "use client";
 
 import React  from 'react';
-import Dashboard from './dashboard/page';
+import Dashboard from './dashboard/layout';
+import Video from './components/Video';
 
 
 
@@ -9,7 +10,7 @@ export default function Home() {
 
   return (
     <div>
-      <Dashboard />
+      <Dashboard children={<Video />} />
     </div>
   );
 }

@@ -10,7 +10,7 @@ const Video = () => {
   const [videos, setVideos] = React.useState<IVideo[]>([]);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
-console.log(videos)
+  console.log(videos)
   useEffect(() => {
     const fetchVideos = async () => {
       try {
@@ -52,13 +52,16 @@ console.log(videos)
           key ={video._id} 
           className="bg-gray-900 rounded-lg shadow-lg overflow-hidden"
         >
-          <div className="aspect-video relative">
+          <div className="relative">
+            
           <IKVideo
               src={video?.videoUrl}
               controls={video.controls}
-              transformation={[
-                { width: video.transformation?.width?.toString(), height: video.transformation?.height?.toString(), quality: video.transformation?.quality?.toString() },
-              ]}
+              transformation={{
+                width: video.transformation?.width?.toString(),
+                height: video.transformation?.height?.toString(),
+                quality: video.transformation?.quality?.toString()
+              }}
             />
           </div>
           
