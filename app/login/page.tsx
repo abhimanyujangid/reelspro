@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
+import { signIn } from "next-auth/react";
 import { Mail, Lock, Github } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { apiClient } from "@/lib/api-client";
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -23,13 +23,20 @@ const Login = () => {
     setLoading(true);
 
     try {
-      await toast.promise(apiClient.login(formData.email, formData.password), {
-        loading: "Logging in...",
-        success: "Login successful!",
+      const res = await signIn("credentials", {
+        redirect: false,
+        email: formData.email,
+        password: formData.password,
       });
-      router.push("/dashboard"); // Redirect after login
+
+      if (res?.error) {
+        throw new Error(res.error);
+      }
+
+      toast.success("Login successful!");
+      router.push("/");
     } catch (error: any) {
-      toast.error(error.message);
+      toast.error(error.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
@@ -88,10 +95,16 @@ const Login = () => {
         {/* Social Login */}
         <div className="text-center text-gray-500">Or continue with</div>
         <div className="flex justify-center gap-4">
-          <button className="flex items-center gap-2 px-4 py-2 text-white bg-red-500 rounded-lg hover:bg-red-600">
+          <button
+            onClick={() => signIn("google")}
+            className="flex items-center gap-2 px-4 py-2 text-white bg-red-500 rounded-lg hover:bg-red-600"
+          >
             <Mail className="w-5 h-5" /> Google
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 text-white bg-gray-800 rounded-lg hover:bg-gray-900">
+          <button
+            onClick={() => signIn("github")}
+            className="flex items-center gap-2 px-4 py-2 text-white bg-gray-800 rounded-lg hover:bg-gray-900"
+          >
             <Github className="w-5 h-5" /> GitHub
           </button>
         </div>

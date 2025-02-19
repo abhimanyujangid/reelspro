@@ -32,8 +32,7 @@ try {
     if (
         !body.title ||
         !body.description || 
-        !body.videoUrl ||
-         !body.thumbnailUrl
+        !body.videoUrl 
         ) {
         return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
