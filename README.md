@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## A Next.js project implementing authentication and video uploads. Users can upload videos with progress tracking using ImageKit, and all users can view uploaded videos. The project focuses on understanding ImageKit and how large applications handle media processing.
 
 ## Getting Started
 
